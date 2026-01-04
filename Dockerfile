@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY --from=builder /wheels /wheels
 
-RUN pip install --no-cache-dir /wheels/*.wh1
+RUN pip install --no-cache-dir /wheels/*.whl
 
 COPY train.py .
 

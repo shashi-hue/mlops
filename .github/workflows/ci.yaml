@@ -1,0 +1,19 @@
+name: docker-ci
+
+on: [push]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build-image
+        run: docker build -t mlops-1 -f Dockerfile .
+      
+      - name: scan
+        uses: acquasecurity/trivy-action@master
+        with:
+          image-ref: mlops-1
+          severity: CRITICAL,HIGH
+  

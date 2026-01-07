@@ -6,7 +6,7 @@ import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_classification
 
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("http://mlflow:5000")
 mlflow.set_experiment("mlops-1")
 
 SEED = 42
@@ -53,4 +53,8 @@ with mlflow.start_run():
         optim.step()
 
     mlflow.log_metric("final_loss",loss.item())
-    mlflow.pytorch.log_model(model,"model")
+    mlflow.pytorch.log_model(
+    model,
+    artifact_path="model",
+    registered_model_name="mlops-1"
+)

@@ -9,8 +9,8 @@ spec:
     spec:
       containers:
       - name: trainer
-        image: mlops
-        imagePullPolicy: IfNotPresent
+        image: 930936104956.dkr.ecr.us-east-1.amazonaws.com/mlops:1.0.0
+        imagePullPolicy: Always
         resources:
             requests:
               cpu: "500m"

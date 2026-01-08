@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: inference
-          image: inference
-          imagePullPolicy: Never
+          image: 930936104956.dkr.ecr.us-east-1.amazonaws.com/inference:1.0.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:

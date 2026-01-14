@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-prod
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: model
+      track: prod
+  template:
+    metadata:
+      labels:
+        app: model
+        track: prod
+    spec:
+      containers:
+        - name: model
+          image: fraud-model
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MODEL_STAGE
+              value: Production
+            - name: MLFLOW_TRACKING_URI
+              value: http://mlflow:5000

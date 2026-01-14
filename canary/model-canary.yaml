@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model
+      track: canary
+  template:
+    metadata:
+      labels:
+        app: model
+        track: canary
+    spec:
+      containers:
+        - name: model
+          image: yourrepo/fraud-model:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MODEL_STAGE
+              value: Staging
+            - name: MLFLOW_TRACKING_URI
+              value: http://mlflow:5000
